@@ -1,6 +1,17 @@
 {
+  "viewportWidth": 1280,
+  "viewportHeight": 720,
   "component": {
     "componentFolder": "src",
     "testFiles": "**/*.spec.ts"
-  }
+  },
+  "reporter": "cypress-mochawesome-reporter",
+  "reporterOptions": {
+    "reportDir": "cypress/reports",
+    "charts": true,
+    "reportPageTitle": "My Test Suites",
+    "embeddedScreenshots": true,
+    "inlineAssets": true
+  },
+  "video": false
 }
