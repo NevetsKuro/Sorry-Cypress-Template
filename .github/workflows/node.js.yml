@@ -9,10 +9,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       
-      # report machine parameters
-      - run: yarn cypress info
-      - run: node -p 'os.cpus()'
-      
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
@@ -20,4 +16,8 @@ jobs:
         with:
           build: yarn build
           start: yarn serve
+        
+      # report machine parameters
+      - run: yarn cypress info
+      - run: node -p 'os.cpus()'
           
