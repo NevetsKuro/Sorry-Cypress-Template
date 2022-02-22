@@ -1,6 +1,8 @@
-name: Cypress Tests
-
-on: [push]
+name: Cypress Tests & github actions
+'on':
+  push:
+    branches:
+      - master
 
 jobs:
   cypress-run:
@@ -24,7 +26,7 @@ jobs:
       # upload reports to firebase
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          repoToken: '${{ secrets.AUTH_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DRIP_PROJECTS }}'
           channelId: live
           projectId: drip-projects
