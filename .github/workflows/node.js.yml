@@ -20,4 +20,14 @@ jobs:
       # report machine parameters
       - run: yarn cypress info
       - run: node -p 'os.cpus()'
+
+      # upload reports to firebase
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DRIP_PROJECTS }}'
+          channelId: live
+          projectId: drip-projects
+        env:
+          VUE_APP_TEST: ${{ secrets.MY_ENV }}
           
