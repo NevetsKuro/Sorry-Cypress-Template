@@ -3,7 +3,7 @@ import pages from '../fixtures/tech-blog-pages.json';
 describe(pages.homePage, () => {
   beforeEach(() => {
     // cy.visit('http://tech.dripcapital.com/');
-    cy.visit('http://localhost:8080/');
+    cy.visit('/');
   });
   it('Random passed test', () => {
     expect(true).to.equal(true);

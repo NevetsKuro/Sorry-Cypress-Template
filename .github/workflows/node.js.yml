@@ -1,4 +1,4 @@
-name: Cypress Tests & github actions
+name: Cypress Tests & Firebase hosting
 'on':
   push:
     branches:
@@ -8,23 +8,37 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: CheckoutCheck out code 🛎
         uses: actions/checkout@v2
       
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      - name: Cypress run
+      - name: Run E2E tests 🧪
         uses: cypress-io/github-action@v2
         with:
+          record: true
+          browser: chrome
           build: yarn build
           start: yarn serve
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # pass the project ID from the secrets through environment variable
+          CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
         
-      # report machine parameters
-      - run: yarn cypress info
-      - run: node -p 'os.cpus()'
-
+      - name: Run Component tests 🧪
+        uses: cypress-io/github-action@v2
+        with:
+          # we have already installed everything
+          install: false
+          # to run component tests we need to use "cypress run-ct"
+          command: yarn cypress run-ct
+          
       # upload reports to firebase
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Firebase hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.AUTH_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DRIP_PROJECTS }}'
@@ -32,4 +46,8 @@ jobs:
           projectId: drip-projects
         env:
           VUE_APP_TEST: ${{ secrets.MY_ENV }}
-          
+
+      # report machine parameters
+      - run: yarn cypress info
+      - run: node -p 'os.cpus()'
+
