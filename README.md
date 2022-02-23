@@ -1,8 +1,5 @@
 [![Cypress Tests](https://github.com/NevetsKuro/Cypress-Template/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/NevetsKuro/Cypress-Template/actions/workflows/node.js.yml)
 
-Links:
-Dashboard -> https://dashboard.cypress.io/projects/rqokbj/runs
-Web Reports -> https://drip-projects.web.app/
 
 Quickstart:
 
