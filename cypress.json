@@ -6,7 +6,6 @@
     "componentFolder": "src",
     "testFiles": "**/*.spec.{js,jsx,ts,tsx}"
   },
-  "testFiles": "cypress/integration/*.spec.js",
   "reporter": "cypress-mochawesome-reporter",
   "reporterOptions": {
     "reportDir": "cypress/reports",
