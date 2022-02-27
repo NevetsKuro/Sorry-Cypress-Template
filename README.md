@@ -3,7 +3,7 @@
 This Projects include Github Actions + Cypress Test + Vue App 
 It used as practice project to understand/learn/apply techniques used in the above mentioned technology. 
 
-Quickstart:
+Quickstart for Cypress:
 
 1. clone this repo
 2. `yarn install`
