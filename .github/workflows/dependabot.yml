@@ -1,11 +1,9 @@
-# Specify assignees for pull requests
-
 version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     # Add assignees
     assignees:
-      - "octocat"
+      - "nevetsKuro"
