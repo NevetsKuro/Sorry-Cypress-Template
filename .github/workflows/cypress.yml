@@ -1,14 +1,15 @@
 name: Cypress Tests & Firebase hosting
 'on':
-  push:
-    branches:
-      - master
+  issue_comment:
+    types:
+      - created
 
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+    if: ${{ github.event.comment.body == 'Run cypress check'}}
     steps:
-      - name: CheckoutCheck out code 🛎
+      - name: Check out code 🛎
         uses: actions/checkout@v2
       
       # Install NPM dependencies, cache them correctly
