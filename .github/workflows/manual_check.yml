@@ -6,14 +6,14 @@ on:
       - created
 
 jobs:
-  like-pizza:
+  deploy-check:
     runs-on: ubuntu-latest
     if: ${{ github.event.comment.body == 'Run deploy check'}}
     steps:
       - name: Pass randomly
         run: |
           cat README.md
-          exit $((1))
+          exit $((RANDOM % 2))
       - name: Message success
         if: ${{ success() }}
         uses: actions/github-script@v4
@@ -24,4 +24,16 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: 'Deployment succeeded! ✅',
-            });     
+            });
+            
+      - name: Message failure
+        if: ${{ failure() }}
+        uses: actions/github-script@v4
+        with:
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Deployment failed! ❌',
+            });  
