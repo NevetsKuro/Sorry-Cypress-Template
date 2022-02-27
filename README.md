@@ -97,7 +97,7 @@ Learn more about how to write assertions with Cypress [in the official docs](htt
 Finally, open the Component Testing runner:
 
 ```sh
-yarn cypress open-ct # or npx cypress open-ct
+yarn cypress open-ct # or npx cypress open-ct.
 ```
 
 Select the spec and watch the test pass!
