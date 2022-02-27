@@ -1,0 +1,27 @@
+name: Run Action on Comment
+
+on:
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  like-pizza:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.comment.body == 'Run deploy check'}}
+    steps:
+      - name: Pass randomly
+        run: |
+          cat README.md
+          exit $((1))
+      - name: Message success
+        if: ${{ success() }}
+        uses: actions/github-script@v4
+        with:
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Deployment succeeded! ✅',
+            });     
