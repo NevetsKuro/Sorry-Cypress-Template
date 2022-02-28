@@ -1,12 +1,12 @@
 name: Mini Tests
 on:
-  label:
+  issue_comment:
     types: [created]
 
 jobs:
   mini-run:
     runs-on: ubuntu-latest
-    if: ${{ github.event.label.name == 'merge' }}
+    if: github.event.issue.comment.body == "Run test" && github.event.issue.comment.author == "NevetsKuro"
     steps:
       - name: Check out code 🛎
         uses: actions/checkout@v2
