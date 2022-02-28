@@ -1,1 +1,1 @@
-console.log("New PR")
+console.log("test workflow dispatch")
