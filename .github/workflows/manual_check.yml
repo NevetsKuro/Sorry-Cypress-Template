@@ -12,7 +12,6 @@ jobs:
     steps:
       - name: Pass randomly
         run: |
-          cat README.md
           exit $((RANDOM % 2))
       - name: Message success
         if: ${{ success() }}
