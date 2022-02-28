@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.issue.comment.body == 'Approve it github'
+    if: github.event.comment.body == 'Approve it github'
     steps:
     - name: Auto Approve
       # You may pin to the exact commit or the version.
