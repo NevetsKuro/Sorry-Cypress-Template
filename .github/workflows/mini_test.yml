@@ -6,7 +6,7 @@ on:
 jobs:
   mini-run:
     runs-on: ubuntu-latest
-    if: github.event.issue.comment.body == 'Run test'
+    if: github.event.comment.body == 'Run test'
     steps:
       - name: Github API Request
         id: request
