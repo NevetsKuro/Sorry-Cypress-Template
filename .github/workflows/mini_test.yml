@@ -6,20 +6,23 @@ on:
 jobs:
   mini-run:
     runs-on: ubuntu-latest
-    if: github.event.issue.comment.body == 'Run test' && github.event.issue.comment.author == 'NevetsKuro'
+    if: github.event.issue.comment.body == 'Run test'
     steps:
-      - name: Check out code 🛎
-        uses: actions/checkout@v2
-        
-      - name: Checkout Pull Request
+      - name: Github API Request
+        id: request
+        uses: octokit/request-action@v2.0.0
+        with:
+          route: ${{ github.event.issue.pull_request.url }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          PR_URL="${{ github.event.issue.pull_request.url }}"
-          PR_NUM=${PR_URL##*/}
-          echo "Checking out from PR #$PR_NUM based on URL: $PR_URL"
-          hub pr checkout $PR_NUM
-          
+
+      - name: Checkout PR Branch
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ fromJson(steps.request.outputs.data).head.repo.full_name }}
+          ref: ${{ steps.pr_data.outputs.branch }}
+      
       - name: Configure Git Agent
         run: |
           git config --global user.email "nevetsGhost@sample.com"
@@ -27,7 +30,7 @@ jobs:
           
       - name: Branch info
         run: |
-          echo "Branch "
+          echo "Branch:"
           gh pr status
           git status
       
