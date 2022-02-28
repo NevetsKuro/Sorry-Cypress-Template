@@ -7,8 +7,5 @@
 # Order is important. The last matching pattern has the most precedence.
 # So if a pull request only touches javascript files, only these owners
 # will be requested to review.
-*.js    @NevetsKuro @lestercardoz11
+*.js    @NevetsKuro
 *.html    @lestercardoz11
-
-# You can also use email addresses if you prefer.
-docs/*  docs@example.com
