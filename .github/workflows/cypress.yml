@@ -23,8 +23,12 @@ jobs:
         run: |
           git config --global user.email "nevetsGhost@sample.com"
           git config --global user.name "You are being haunted!!"
-      - name: Branch name
-        run: echo running on branch ${GITHUB_REF##*/}
+          
+      - name: Branch info
+        run: |
+          echo "Branch "
+          gh pr status
+          git status
       
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
