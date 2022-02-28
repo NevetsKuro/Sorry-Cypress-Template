@@ -1,4 +1,4 @@
-name: Mini Tests
+name: Manual trigger Component tests
 on:
   workflow_dispatch:
     inputs:
