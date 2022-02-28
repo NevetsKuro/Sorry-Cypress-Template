@@ -1,0 +1,42 @@
+name: Mini Tests
+on:
+  label:
+    types: [created]
+
+jobs:
+  mini-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code 🛎
+        uses: actions/checkout@v2
+        
+      - name: Checkout Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_URL="${{ github.event.issue.pull_request.url }}"
+          PR_NUM=${PR_URL##*/}
+          echo "Checking out from PR #$PR_NUM based on URL: $PR_URL"
+          hub pr checkout $PR_NUM
+          
+      - name: Configure Git Agent
+        run: |
+          git config --global user.email "nevetsGhost@sample.com"
+          git config --global user.name "You are being haunted!!"
+          
+      - name: Branch info
+        run: |
+          echo "Branch "
+          gh pr status
+          git status
+      
+      - name: Run Component tests 🧪
+        uses: cypress-io/github-action@v2
+        with:
+          # to run component tests we need to use "cypress run-ct"
+          command: yarn cypress run-ct
+        env:
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # pass the project ID from the secrets through environment variable
+          CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
