@@ -1,7 +1,8 @@
 name: auto approve
 on:
   issue_comment:
-    types: [created]
+    types:
+      - created
 
 jobs:
   build:
