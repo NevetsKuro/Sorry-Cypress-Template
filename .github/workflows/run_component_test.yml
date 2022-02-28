@@ -1,0 +1,37 @@
+name: Mini Tests
+on:
+  workflow_dispatch:
+    inputs:
+      branch_SHA:
+        description: 'PR SHA string' 
+        required: true
+        default: 'warning'
+
+jobs:
+  mini-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          echo "Log level: ${{ github.event.inputs.branch_SHA }}"
+      
+      - name: Configure Git Agent
+        run: |
+          git config --global user.email "nevetsGhost@sample.com"
+          git config --global user.name "You are being haunted!!"
+          
+      - name: Branch info
+        run: |
+          echo "Branch:"
+          git status
+      
+      - name: Run Component tests 🧪
+        uses: cypress-io/github-action@v2
+        with:
+          # to run component tests we need to use "cypress run-ct"
+          command: yarn cypress run-ct
+        env:
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # pass the project ID from the secrets through environment variable
+          CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
