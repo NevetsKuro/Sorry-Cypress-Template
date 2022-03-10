@@ -1,6 +1,6 @@
-import pages from '../fixtures/tech-blog-pages.json';
+// import pages from '../fixtures/tech-blog-pages.json';
 
-describe(pages.homePage, () => {
+describe("Home Test", () => {
   beforeEach(() => {
     // cy.visit('http://tech.dripcapital.com/');
     cy.visit('/');
