@@ -7,16 +7,23 @@ on:
 jobs:
   sorry-cypress:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # run 3 copies of the current job in parallel
+        containers: [1, 2, 3, 4, 5]
+    timeout-minutes: 6
     if: "!contains(toJSON(github.event.commits.*.message), '[skip ci]')"
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js v12
-        uses: actions/setup-node@v2
-        with:
-          node-version: '12.x'
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: yarn
-      - run: yarn run build
-      - run: yarn serve -s dist -l 8081
-      - run: npx currents run --parallel --record --key WD4QzqyNBXTBHOU6 --ci-build-id cypress-build-init
+      # Install Currents
+      - name: Install currents
+        run: yarn add @currents/cli
+
+      # Run all Cypress tests
+      - name: Run Cypress on Currents.dev
+        uses: cypress-io/github-action@v2
+        with:
+          command: yarn currents run --record --parallel --key ${{ secrets.CURRENTS_RECORD_KEY }} --ci-build-id "${{ github.repository }}-${{ github.run_id }}-${{ github.run_attempt}}"
