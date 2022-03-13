@@ -6,7 +6,7 @@
     "componentFolder": "src",
     "testFiles": "**/*.spec.{js,jsx,ts,tsx}"
   },
-  "video": false,
+  "video": true,
   "chromeWebSecurity": false,
-  "projectId": "stevenCypress"
+  "projectId": "1xkm4v"
 }
