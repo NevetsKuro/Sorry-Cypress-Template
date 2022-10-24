@@ -23,12 +23,12 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@currents/cli@^2.0.0-beta.0":
-  version "2.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@currents/cli/-/cli-2.0.0-beta.0.tgz#736115eb8b97793e3ab302e097ad953c2d7a6c97"
-  integrity sha512-ypHQ8KRSPy0kfYxnYRgi4XhAeJVQWyeOqtET66hyVD30Icyrdg6y1HYLElOkVwCVl802M7JLj2NbfdbTqLKpGA==
+"@currents/cli@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@currents/cli/-/cli-2.2.0.tgz#986a8c1d2ba144929dbd63cc73438615d31330cd"
+  integrity sha512-SfJ6EUuOHGLbz7g5DPpx/aAMH5a+XfJwHm9f+nERT2Ehqh1fXmAEEeqxcZLSwpQPlcCArzXbUbgw2VvMPCbX5A==
   dependencies:
-    cy2 "2.0.0-beta.0"
+    cy2 "2.0.1"
 
 "@cypress/mount-utils@1.0.2":
   version "1.0.2"
@@ -2165,10 +2165,10 @@ csso@^4.0.2:
   dependencies:
     css-tree "^1.1.2"
 
-cy2@2.0.0-beta.0:
-  version "2.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/cy2/-/cy2-2.0.0-beta.0.tgz#0c84cf121dcec3dbc47de3e68407e725e03e3125"
-  integrity sha512-ulOqsfuA1LuVw00RPiPrzCgfaroR6Kba6sfhy3YLNidNCrDf21TJSZWAWWJUkFj2wtKCqiYJM6TEp1P2Zjzv8A==
+cy2@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/cy2/-/cy2-2.0.1.tgz#1d13bbec387ee31537a8a948bcbf608f06dd3441"
+  integrity sha512-vzLXnNj9LtqGyvsTx+qo4Zj5K8tVVIntXGPGAQE4w/ThZFtONTsGyc1kk29jtsHbJwZQ+zZu3o0GE+kPsSBlCA==
   dependencies:
     debug "^4.3.2"
     js-yaml "^4.0.0"
